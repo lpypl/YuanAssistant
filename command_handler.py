@@ -1,3 +1,5 @@
+import sys
+
 def response(text, speed="1.14"):
     import tts
     import config
@@ -32,6 +34,10 @@ def command_handler(command):
     elif '睡眠' in command:
         response('正在睡眠')
         os.system('suspend')
+
+    elif '推送' in command:
+        response('正在启动推送')
+        os.system(f"gnome-terminal -e  '{sys.path[0]}/push.sh'")
 
     else:
         response('小源还没有学会此命令 ' + command)

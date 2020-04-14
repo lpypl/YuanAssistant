@@ -12,6 +12,7 @@ def command_handler(command):
     import os
 
     if '打开播放器' in command:
+        # 使用os.system的话，若终端被杀死，则vlc也会被杀死
         subprocess.Popen('vlc')
         response('正在打开vlc')
 
@@ -31,10 +32,11 @@ def command_handler(command):
         response('正在关机')
         os.system('poweroff')
 
-    elif '睡眠' in command:
-        response('正在睡眠')
-        os.system('suspend')
+    elif '休眠' in command:
+        response('正在休眠')
+        os.system('systemctl hibernate')
 
+    # commit 并 push 本项目
     elif '推送' in command:
         response('正在启动推送')
         os.system(f"gnome-terminal -e  '{sys.path[0]}/push.sh'")

@@ -41,6 +41,10 @@ def command_handler(command):
         response('正在启动推送')
         os.system(f"gnome-terminal -e  '{sys.path[0]}/push.sh'")
 
+    elif command.startswith('搜索'):
+        response('正在启动搜索')
+        os.system(f"google-chrome-stable --new-window  www.google.com/search?q={command[2:]}")
+
     else:
         response('小源还没有学会此命令 ' + command)
 

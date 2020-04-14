@@ -1,0 +1,1 @@
+speech_on = True

@@ -146,18 +146,11 @@ if __name__ == '__main__':
     result_dict = eval(result_str)
     print(result_str)
 
-    import subprocess
-    import os
-
-    if '播放音乐' in result_dict['result'][0]:
-        subprocess.Popen('vlc')
-    elif '打开浏览器' in result_dict['result'][0]:
-        subprocess.Popen('google-chrome-stable')
-    elif '重启' in result_dict['result'][0]:
-        os.system('reboot')
-    elif '关机' in result_dict['result'][0]:
-        os.system('poweroff')
-    elif '睡眠' in result_dict['result'][0]:
-        os.system('suspend')
     with open("result.txt", "w") as of:
         of.write(result_str)
+
+    from command_handler import command_handler, command_filter
+
+    command = command_filter(result_dict['result'][0])
+    command_handler(command)
+    

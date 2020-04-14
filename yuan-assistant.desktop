@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=语音助手
+Comment=语音助手
+Exec=bash /home/lpy/Coding/yuan-assistant/yuan-assistant.sh
+Icon=/home/lpy/Coding/yuan-assistant/yuan-assistant.png
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Application;

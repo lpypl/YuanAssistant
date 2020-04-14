@@ -1,3 +1,8 @@
 #! /usr/bin/bash
-cd /home/lpy/Coding/yuan-assistant/
-arecord -d 2 -r 16000 -c 1 -f S16_LE /home/lpy/Coding/yuan-assistant/audio/voice-record.wav && /usr/bin/python /home/lpy/Coding/yuan-assistant/asr_raw.py
+PROGDIR=$(dirname $(readlink -f "$0"))
+
+if [ ! -d "$PROGDIR/audio" ]; then
+    mkdir $PROGDIR/audio
+fi
+
+arecord -d 2 -r 16000 -c 1 -f S16_LE $PROGDIR/audio/voice-record.wav && /usr/bin/python $PROGDIR/asr_raw.py

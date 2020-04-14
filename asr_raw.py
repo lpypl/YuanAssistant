@@ -31,7 +31,7 @@ API_KEY = 'kVcnfD9iW2XVZSMaLMrtLYIz'
 SECRET_KEY = 'O9o1O213UgG5LFn0bDGNtoRN3VWl2du6'
 
 # 需要识别的文件
-AUDIO_FILE = './audio/voice-record.wav'  # 只支持 pcm/wav/amr 格式，极速版额外支持m4a 格式
+AUDIO_FILE = sys.path[0] + '/audio/voice-record.wav'  # 只支持 pcm/wav/amr 格式，极速版额外支持m4a 格式
 # 文件格式
 FORMAT = AUDIO_FILE[-3:];  # 文件后缀只支持 pcm/wav/amr 格式，极速版额外支持m4a 格式
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     result_dict = eval(result_str)
     print(result_str)
 
-    with open("result.txt", "w") as of:
+    with open(sys.path[0] + "/log.txt", "a") as of:
         of.write(result_str)
 
     from command_handler import command_handler, command_filter

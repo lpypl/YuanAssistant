@@ -26,11 +26,16 @@ def command_handler(command):
 
     elif '管理小飞机' in command:
         subprocess.Popen('google-chrome-stable --new-window  192.168.2.1/cgi-bin/luci///admin/services/shadowsocksr'.split())
-        response('正在打开ssr plus')        
+        response('正在打开ssr plus')
 
     elif '打开vscode' in command:
         subprocess.Popen('code')
         response('正在打开vscode')
+    
+    elif '连接树莓派' in command:
+        # 参数中有空格了，不能再简单的split一个字符串了
+        subprocess.Popen(['gnome-terminal', '-e', 'ssh pi@192.168.2.4'])
+        response('正在连接树莓派')
 
     # commit 并 push 本项目
     elif '推送' in command:

@@ -37,6 +37,16 @@ def command_handler(command):
         subprocess.Popen(['gnome-terminal', '-e', 'ssh pi@192.168.2.4'])
         response('正在连接树莓派')
 
+    elif '现在几点' in command:
+        import time
+        response(time.strftime('%m月%d日 %H:%M', time.localtime()))
+
+    elif '你叫什么' in command:
+        response('我叫小源，是你专属的人工智障呀')
+
+    elif '智障' in command:
+        response('你才是智障')
+
     # commit 并 push 本项目
     elif '推送' in command:
         subprocess.Popen(f"gnome-terminal -e  '{sys.path[0]}/push.sh'".split())

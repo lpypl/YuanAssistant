@@ -20,9 +20,32 @@ def command_handler(command):
         subprocess.Popen('google-chrome-stable')
         response('正在打开chrome')
 
+    elif '管理路由器' in command:
+        subprocess.Popen('google-chrome-stable --new-window  192.168.2.1'.split())
+        response('正在打开luci')
+
+    elif '管理小飞机' in command:
+        subprocess.Popen('google-chrome-stable --new-window  192.168.2.1/cgi-bin/luci///admin/services/shadowsocksr'.split())
+        response('正在打开ssr plus')        
+
     elif '打开vscode' in command:
         subprocess.Popen('code')
         response('正在打开vscode')
+
+    # commit 并 push 本项目
+    elif '推送' in command:
+        subprocess.Popen(f"gnome-terminal -e  '{sys.path[0]}/push.sh'".split())
+        response('正在启动推送')
+    
+    elif command.startswith('搜索'):
+        subprocess.Popen(f"google-chrome-stable --new-window  www.google.com/search?q={command[2:]}".split())
+        response('正在启动搜索')
+
+    elif '讲个笑话' in command:
+        response('不讲')
+
+    elif '你会干什么' in command or '你会做什么' in command:
+        response('小源只是个人工智障，你自己看一下源代码中定义的功能吧')
 
     elif '重启' in command:
         response('正在重启')
@@ -35,21 +58,6 @@ def command_handler(command):
     elif '休眠' in command:
         response('正在休眠')
         os.system('systemctl hibernate')
-
-    # commit 并 push 本项目
-    elif '推送' in command:
-        response('正在启动推送')
-        os.system(f"gnome-terminal -e  '{sys.path[0]}/push.sh'")
-
-    elif '讲个笑话' in command:
-        response('不讲')
-
-    elif command.startswith('搜索'):
-        response('正在启动搜索')
-        os.system(f"google-chrome-stable --new-window  www.google.com/search?q={command[2:]}")
-
-    elif '你会干什么' in command or '你会做什么' in command:
-        response('小源只是个人工智障，你自己看一下源代码中定义的功能吧')
 
     else:
         response('小源还没有学会此命令 ' + command)

@@ -15,6 +15,10 @@ def command_handler(command):
         # 使用os.system的话，若终端被杀死，则vlc也会被杀死
         subprocess.Popen('vlc')
         response('正在打开vlc')
+    
+    elif '播放音乐' in command:
+        subprocess.Popen(['vlc', '/home/lpy/Music/'])
+        response('即将播放')
 
     elif '打开浏览器' in command:
         subprocess.Popen('google-chrome-stable')
@@ -56,11 +60,23 @@ def command_handler(command):
         subprocess.Popen(f"google-chrome-stable --new-window  www.google.com/search?q={command[2:]}".split())
         response('正在启动搜索')
 
+    elif '唱歌' in command or '唱首歌' in command:
+        response('twinkle, twinkle, little star, how i wonder what you are')
+
     elif '讲个笑话' in command:
         response('不讲')
 
     elif '你会干什么' in command or '你会做什么' in command:
+        # subprocess.Popen(f"gedit {sys.path[0]}/command_handler.py".split())
         response('小源只是个人工智障，你自己看一下源代码中定义的功能吧')
+
+    elif '开启复读机模式' in command:
+        response('已开启复读机模式')
+        os.system(f'touch {sys.path[0]}/.repeater')
+    
+    elif '关闭复读机模式' in command:
+        response('已关闭复读机模式')
+        os.system(f'rm -rf {sys.path[0]}/.repeater')
 
     elif '重启' in command:
         response('正在重启')
@@ -75,7 +91,10 @@ def command_handler(command):
         os.system('systemctl hibernate')
 
     else:
-        response('小源还没有学会此命令 ' + command)
+        if os.path.exists(f'{sys.path[0]}/.repeater'):
+            response(command)
+        else:
+            response('小源还没有学会此命令 ' + command)
 
 
 def command_filter(command):

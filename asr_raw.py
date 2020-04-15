@@ -27,8 +27,10 @@ else:
         # On most other platforms the best timer is time.time()
         timer = time.time
 
-API_KEY = 'kVcnfD9iW2XVZSMaLMrtLYIz'
-SECRET_KEY = 'O9o1O213UgG5LFn0bDGNtoRN3VWl2du6'
+import config
+
+API_KEY = config.api_key
+SECRET_KEY = config.secret_key
 
 # 需要识别的文件
 AUDIO_FILE = sys.path[0] + '/audio/voice-record.wav'  # 只支持 pcm/wav/amr 格式，极速版额外支持m4a 格式

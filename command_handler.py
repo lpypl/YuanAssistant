@@ -45,6 +45,21 @@ def command_handler(command):
         import time
         response(time.strftime('%m月%d日 %H:%M', time.localtime()))
 
+    # 依赖于和风天气API KEY
+    elif '明天天气' in command:
+        import requests
+        import config
+        try:
+            import config_private
+        except ImportError:
+            response('未找到私有配置文件，请添加和风天气api key')
+            return
+        resp = requests.get(config.heweather_url, 
+            {'location' : config_private.heweather_location, 'key' : config_private.heweather_key})
+        tomorrow_weather = resp.json()['HeWeather6'][0]['daily_forecast'][0]
+        msg = f"白天 {tomorrow_weather['cond_txt_d']}，晚上 {tomorrow_weather['cond_txt_n']}，{tomorrow_weather['tmp_min']}度到{tomorrow_weather['tmp_max']}度"
+        response(msg)
+
     elif '你叫什么' in command:
         response('我叫小源，是你专属的人工智障呀')
 

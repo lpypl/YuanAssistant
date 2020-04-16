@@ -24,3 +24,8 @@
 
 ### 使用自己的账号
 现在使用的　`API_KEY`　和　`SECRET_KEY`　是官方demo里的，如果失效的话可以自己申请百度AI平台账号，然后替换成自己的 `API_KEY`　和　`SECRET_KEY`。
+
+## 其他说明
+
+### 天气预报
+使用和风天气API做了简单的天气预报，用到了私有APIKEY，因此创建了一个 `config_private.py` 用于存储私有配置，此文件并未上传到github

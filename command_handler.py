@@ -9,7 +9,7 @@ def response(text, speed="1.14"):
         try:
             import config_private
             if config_private.speech_delay:
-                text = '，，' + text
+                text = '啊啊，' + text
         except ImportError:
             pass
         tts.say(text, speed=speed)

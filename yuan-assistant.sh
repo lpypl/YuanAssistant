@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 PROGDIR=$(dirname $(readlink -f "$0"))
 
 if [ ! -d "$PROGDIR/audio" ]; then

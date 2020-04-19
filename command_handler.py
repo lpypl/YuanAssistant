@@ -4,6 +4,14 @@ def response(text, speed="1.14"):
     import tts
     import config
     if config.speech_on:
+
+        # 由于我树莓派声音蓝牙音箱播放语音时前几个字声音特别小，听不见，所以使用延迟修正声音
+        try:
+            import config_private
+            if config_private.speech_delay:
+                text = '，，' + text
+        except ImportError:
+            pass
         tts.say(text, speed=speed)
 
 

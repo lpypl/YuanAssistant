@@ -103,15 +103,15 @@ def command_handler(command):
 
     elif '重启' in command:
         response('正在重启')
-        os.system('reboot')
+        os.system('systemctl reboot -i')
 
     elif '关机' in command:
         response('正在关机')
-        os.system('poweroff')
+        os.system('systemctl poweroff -i')
 
     elif '休眠' in command:
         response('正在休眠')
-        os.system('systemctl hibernate')
+        os.system('systemctl hibernate -i')
 
     else:
         if os.path.exists(f'{sys.path[0]}/.repeater'):
